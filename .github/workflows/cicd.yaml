@@ -3,14 +3,24 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run unit tests
+        run: npm test
+
+  e2e-tests:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
-      - name: Run a one-line script
-        run: echo HELLO WORLD
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build
-          echo test, and deploy your project
+      - name: Run unit tests
+        run: npm run test:e2e
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build
+        run: npm run build
