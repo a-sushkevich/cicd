@@ -3,33 +3,16 @@ name: CI
 on: [push]
 
 jobs:
-  deps:
+  flow:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
-
-  unit-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
       - name: Run unit tests
-        run: npm test
-
-  e2e-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
+        run: npm run test
       - name: Run e2e tests
         run: npm run test:e2e
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Build
         run: npm run build
